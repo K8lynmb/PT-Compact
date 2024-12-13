@@ -1,0 +1,12 @@
+# Create a pivot table with the state as index and the number of therapists as values
+pivot_df = df.pivot('State', 'PTCompactT', 'Number of Physical Therapists')
+
+# Plot heatmap
+plt.figure(figsize=(14, 8))
+sns.heatmap(pivot_df, annot=True, cmap='Blues', fmt="d")
+
+# Add labels and title
+plt.title('Physical Therapists by State and PTCompact Status')
+
+# Display the heatmap
+plt.show()

@@ -1,0 +1,17 @@
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Set up the visualization style
+sns.set(style="whitegrid")
+
+# Plot a bar chart comparing the number of physical therapists in Compact vs non-Compact states
+plt.figure(figsize=(10, 6))
+sns.barplot(x='PTCompact', y='Number of Physical Therapists', data=df, estimator=sum, ci=None, palette='muted')
+
+# Add labels and title
+plt.title('Total Number of Physical Therapists in PTCompact vs Non-PTCompact States')
+plt.xlabel('PTCompact Status')
+plt.ylabel('Total Number of Physical Therapists')
+
+# Display the plot
+plt.show()

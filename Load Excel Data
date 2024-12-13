@@ -1,0 +1,8 @@
+import pandas as pd
+
+# Load the Excel file (make sure to specify the correct path to your file)
+file_path = 'C:\Users\kbison\Downloads\PT Data.xlsx'
+df = pd.read_excel(C:\Users\kbison\Downloads\PT Data.xlsx)
+
+# Display the first few rows of the dataset to understand its structure
+print(df.head('State', 'Employment_2017', 'Employment_2023'))

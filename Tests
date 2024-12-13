@@ -30,11 +30,11 @@ class TestDataAnalysis(unittest.TestCase):
         self.assertTrue(self.df['Number of Physical Therapists'].dtype == 'float64', "The 'Number of Physical Therapists' column does not have the correct data type.")
 
     def test_psypact_column(self):
-        """Test if the 'PSYPACT' column is created correctly."""
-        psy_pact_states = ['Arizona', 'Colorado', 'Georgia', 'Missouri', 'North Carolina', 'Oregon', 'Tennessee', 'Texas']
-        self.df['PSYPACT'] = self.df['State'].apply(lambda x: 'Yes' if x in psy_pact_states else 'No')
-        self.assertIn('PSYPACT', self.df.columns, "'PSYPACT' column is missing.")
-        self.assertTrue(self.df['PSYPACT'].isin(['Yes', 'No']).all(), "'PSYPACT' column contains invalid values.")
+        """Test if the 'PTCompact' column is created correctly."""
+        pt_pact_states = ['Alaska', 'Arizona', 'Arkansas', 'Colorado', 'Connecticut', 'Delaware', 'Georgia', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland','Minnesota','Mississppi','Montana','Nebraska','New Hampshire','New Jersey']
+        self.df['PTCompact'] = self.df['State'].apply(lambda x: 'Yes' if x in psy_pact_states else 'No')
+        self.assertIn('PTCompact', self.df.columns, "'PTCompact' column is missing.")
+        self.assertTrue(self.df['PSYPACT'].isin(['Yes', 'No']).all(), "'PTCompact' column contains invalid values.")
 
     def test_visualization(self):
         """Test if a visualization can be generated (basic test)."""

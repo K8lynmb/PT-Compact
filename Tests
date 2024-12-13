@@ -1,0 +1,53 @@
+import unittest
+import pandas as pd
+
+class TestDataAnalysis(unittest.TestCase):
+
+    def setUp(self):
+        # This method will run before each test case
+        self.df = pd.read_excel('path_to_your_data.xlsx')  # Update with your actual file path
+
+    def test_data_loading(self):
+        """Test if the dataset loads correctly."""
+        self.assertFalse(self.df.empty, "The dataframe is empty. Check the file path and contents.")
+
+    def test_missing_values(self):
+        """Test if missing values are handled correctly."""
+        # Assume the 'Number of Physical Therapists' column should not have missing values
+        missing_values = self.df['Number of Physical Therapists'].isnull().sum()
+        self.assertEqual(missing_values, 0, f"There are {missing_values} missing values in 'Number of Physical Therapists'.")
+
+    def test_duplicates(self):
+        """Test if duplicates are removed correctly."""
+        before_dropping = len(self.df)
+        self.df = self.df.drop_duplicates()
+        after_dropping = len(self.df)
+        self.assertLess(after_dropping, before_dropping, "Duplicates were not removed correctly.")
+
+    def test_data_types(self):
+        """Test if the 'Number of Physical Therapists' column has the correct data type."""
+        self.df['Number of Physical Therapists'] = pd.to_numeric(self.df['Number of Physical Therapists'], errors='coerce')
+        self.assertTrue(self.df['Number of Physical Therapists'].dtype == 'float64', "The 'Number of Physical Therapists' column does not have the correct data type.")
+
+    def test_psypact_column(self):
+        """Test if the 'PSYPACT' column is created correctly."""
+        psy_pact_states = ['Arizona', 'Colorado', 'Georgia', 'Missouri', 'North Carolina', 'Oregon', 'Tennessee', 'Texas']
+        self.df['PSYPACT'] = self.df['State'].apply(lambda x: 'Yes' if x in psy_pact_states else 'No')
+        self.assertIn('PSYPACT', self.df.columns, "'PSYPACT' column is missing.")
+        self.assertTrue(self.df['PSYPACT'].isin(['Yes', 'No']).all(), "'PSYPACT' column contains invalid values.")
+
+    def test_visualization(self):
+        """Test if a visualization can be generated (basic test)."""
+        import matplotlib.pyplot as plt
+        import seaborn as sns
+
+        # Create a basic bar plot visualization
+        sns.set(style="whitegrid")
+        plot = sns.barplot(x='PSYPACT', y='Number of Physical Therapists', data=self.df, estimator=sum, ci=None, palette='muted')
+        
+        # Check if plot is created without error
+        self.assertIsInstance(plot, plt.Axes, "Plot was not created successfully.")
+        plt.close()  # Close the plot to prevent it from displaying during tests
+
+if __name__ == '__main__':
+    unittest.main()

@@ -1,0 +1,8 @@
+# List of PT Compact states (example; you can load this from a CSV or Excel)
+pt_pact_states = ['Alaska', 'Arizona', 'Arkansas', 'Colorado', 'Connecticut', 'Delaware', 'Georgia', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland','Minnesota','Mississppi','Montana','Nebraska','New Hampshire','New Jersey']  # example states
+
+# Add a new column to indicate if the state is part of PTCompact
+df['PTCOMPACT'] = df['State'].apply(lambda x: 'Yes' if x in pt_pact_states else 'No')
+
+# Check the modified data
+print(df.head())

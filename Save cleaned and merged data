@@ -1,0 +1,2 @@
+# Save cleaned and merged data to a new Excel file
+df.to_excel('cleaned_physical_therapy_data.xlsx', index=False)

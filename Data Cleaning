@@ -1,0 +1,13 @@
+# Handle missing values (drop rows or fill with a default value)
+df = df.dropna()  # Drop rows with missing values
+# or
+# df['Number of Physical Therapists'] = df['Number of Physical Therapists'].fillna(0)
+
+# Remove duplicates if any
+df = df.drop_duplicates()
+
+# Ensure correct data types
+df['Number of Physical Therapists'] = pd.to_numeric(df['Number of Physical Therapists'], errors='coerce')
+
+# Display cleaned data
+print(df.info())

@@ -1,0 +1,14 @@
+# Convert the Year column to datetime (if it's not already)
+df['Year'] = pd.to_datetime(df['Year'], format='%Y')
+
+# Plot a line chart for trends over time
+plt.figure(figsize=(12, 6))
+sns.lineplot(x='Year', y='Number of Physical Therapists', hue='PTCompact', data=df)
+
+# Add labels and title
+plt.title('Trends in Physical Therapist Numbers Over Time by PTCompact States')
+plt.xlabel('Year')
+plt.ylabel('Number of Physical Therapists')
+
+# Display the plot
+plt.show()
